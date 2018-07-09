@@ -1,0 +1,9 @@
+<swiper indicator-dots='{{indicatorDots}}' autoplay='{{autoplay}}' interval='{{interval}}' duration='{{duration}}' circular='{{circular}}'>
+  <block wx:for='{{imageUrls}}'>
+    <swiper-item>
+      <navigator url='/pages/view0/view0'>
+        <image src='{{item.images.large}}'></image>
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>
