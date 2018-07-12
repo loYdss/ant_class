@@ -18,6 +18,15 @@
                     </div>
                     <router-link to='/' class="register a">还没账号?<span class="spa">去注册</span></router-link>
                     <router-link to='/' class="forget a">忘记密码?</router-link>
+                     <div class="ident_code">
+                        <div class="code">
+                          <input type="text" placeholder="请输入验证码" class="input_code" v-model="ident_code">
+                          <input type="button" @click="create_code" class="check_code" v-model="check_code">
+                        </div>
+                    </div>
+                    <div class="alert">
+                        <p class="alert_p" id="warn">验证码错误</p>
+                    </div>
                     <div class='submit'>
                         <el-button type="success" round id="login_button" :disabled="disabled">登录</el-button>
                     </div>
@@ -36,11 +45,27 @@ export default {
     return {
       name: "",
       password: "",
+      ident_code:"",
+      check_code:"",
       disabled: false,
     };
   },
   components: {
     Nav
+  },
+  methods:{
+      create_code(){
+      this.code = '';
+      this.ident_code = '';
+      this.check_code = '';
+      const codeLength = 4;
+      let random = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+      for(let i = 0; i < codeLength; i++){
+        let index = Math.floor(Math.random()*36);
+        this.code += random[index];
+      }
+        this.check_code = this.code;
+      }
   },
   computed: {
     address() {
@@ -61,7 +86,17 @@ export default {
         }     
     },
          deep:true
-  }
+  },
+  ident_code:{
+        handler: function(val){
+          let check = this.check_code;
+          if(val == check){
+            let warn = document.getElementById('warn');
+            warn.innerHTML = '验证码正确'
+          }
+        }
+      },
+      deep:true
   },
   mounted() {
     this.init_wid();
@@ -70,6 +105,9 @@ export default {
     let width = document.documentElement.clientWidth;
     this.juj_wid(width);
     });
+  },
+  created() {
+    this.create_code();
   }
 };
 </script>
@@ -140,4 +178,27 @@ export default {
     color: #999;
     margin-left: 5.8rem;
 }
+.input_code {
+  margin: 0 4rem 0 5.6rem;
+  outline: none;
+  border: 1px solid #dcdfe6;
+  height: 2.5rem;
+  border-radius: 4px;
+  
+  letter-spacing: .5rem;
+}
+.check_code {
+ border: 1px solid #dcdfe6;
+ background-color: rgba($color: #000000, $alpha: .4);
+ padding: 0rem .8rem;
+ border-radius: 4px;
+ height: 2.5rem;
+}   
+.alert {
+  margin: 1rem 0rem 0 5.6rem;
+}  
+.alert_p {
+  color: red;
+  letter-spacing: .5rem;
+}  
 </style>
