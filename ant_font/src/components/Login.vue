@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-header> <Nav></Nav></el-header>
+        <el-header><Nav></Nav></el-header>
         <el-main>
            <div class='main_contain'>
                <div class='contain_left'>
@@ -9,53 +9,67 @@
                <div class='contain_right' id='login'>
                     <h3>欢迎来到**</h3>
                     <div class='name'>
-                       <el-input v-model="name" placeholder="用户名/邮箱/手机号"></el-input>
+                       <el-input v-model="name" placeholder="用户名/邮箱/手机号" prefix-icon="el-icon-ant-yonghutouxiang" id="user">
+                       </el-input>
                     </div>
                     <div class='password'>
-                        <el-input v-model="password" placeholder="用户密码" type="password"></el-input>
+                        <el-input v-model="password" placeholder="用户密码" type="password" prefix-icon="el-icon-ant-07" id="password"></el-input>
+                        <i class="i_password"></i>
                     </div>
+                    <router-link to='/' class="register a">还没账号?<span class="spa">去注册</span></router-link>
+                    <router-link to='/' class="forget a">忘记密码?</router-link>
                     <div class='submit'>
-                        <el-button type="success" round>登录</el-button>
-                    </div>
-                     <div class='submit'>
-                        <el-button type="success" round>注册</el-button>
+                        <el-button type="success" round id="login_button" :disabled="disabled">登录</el-button>
                     </div>
                </div>
                <div class="clearfix">
                </div>
            </div>
-           
         </el-main>
-        <el-footer></el-footer>
     </el-container>
-
 </template>
 <script>
 import Nav from "./Navigation";
+import "../assets/icon/iconfont.css";
 export default {
-    name: 'HelloWorld',
-    data() {
+  data() {
     return {
-      imgArray: [
-        { pic: "01", src: require("../assets/login_one.png") },
-        { pic: "02", src: require("../assets/login_two.png") },
-        { pic: "03", src: require("../assets/login_three.png") },
-        { pic: "04", src: require("../assets/login_four.png") }
-      ],
-       name: '',
-       password: ''
+      name: "",
+      password: "",
+      disabled: false,
     };
   },
   components: {
     Nav
   },
-  mounted(){
-      var width = document.body.clientWidth;
-      window.addEventListener('resize',()=>{
-          if(width < 1000){
-              document.getElementById('login').style.marginLeft="5.9rem";
-          }
-      })
+  computed: {
+    address() {
+    const { name, password } = this
+    return {
+      name,
+      password
+    }
+  }
+  },
+  watch:{
+       address: {
+        handler: function(val) {
+            if(val.name==''||val.password==''){
+                this.disabled = true;
+            }else{
+            this.disabled = false; 
+        }     
+    },
+         deep:true
+  }
+  },
+  mounted() {
+    this.init_wid();
+    let login = document.getElementById('login_button');   
+    window.addEventListener("resize", () => {
+    let width = document.documentElement.clientWidth;
+    this.juj_wid(width);
+    });
   }
 };
 </script>
@@ -68,46 +82,62 @@ export default {
     \\5fae\8f6f\96c5\9ed1, Arial, SimHei;
 }
 .contain_left {
-    margin-top: 6.25rem;
-    margin-left: 11.25rem;
-    margin-bottom: 1rem;
-    height: 30rem;
-    background-color: #eee;
-    width: 28.125rem;
-    float: left;
-    box-shadow: 0px 0px 3px  #888888;
+  margin-top: 6.25rem;
+  margin-left: 11.25rem;
+  margin-bottom: 1rem;
+  height: 30rem;
+  background-color: #eee;
+  width: 28.125rem;
+  float: left;
+  box-shadow: 0px 0px 3px #888888;
 }
 .contain_right {
-    margin-top: 6.25rem;
-    height: 30rem;
-    width: 28.125rem;
-    margin-bottom: 1rem;
-    float: left;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 3px 1px #888888;
+  margin-top: 6.25rem;
+  height: 30rem;
+  width: 28.125rem;
+  margin-bottom: 1rem;
+  float: left;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 3px 1px #888888;
 }
 .contain_right > h3 {
-    margin-top: 2rem;
-    text-align: center;
-    font-weight: 100;
-    font-size: 1.75rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-weight: 100;
+  font-size: 1.75rem;
 }
 .login_img {
-    margin: 15% 15%;
-    width: 70%;
-    height: 70%;
+  margin: 15% 15%;
+  width: 70%;
+  height: 70%;
 }
 .clearfix {
-    clear: both;
+  clear: both;
 }
 .name,.password {
-    margin: 1rem 1rem;
-    display: inline-block;
-    margin-left: 20%;
-    width: 19.375rem;
+  margin: 1rem 1rem;
+  display: inline-block;
+  margin-left: 20%;
+  width: 19.375rem;
 }
 .submit {
-    margin: 2rem 6rem;
-
+  margin: 2rem 5.6rem;
+}
+.submit > button {
+  padding: 0.8rem 8.9rem;
+}
+.a {
+    text-decoration: none; 
+}
+.spa,.forget {
+    color: #209e85;
+}
+.forget {
+    float: right;
+    margin-right: 3.3rem;
+}
+.register {
+    color: #999;
+    margin-left: 5.8rem;
 }
 </style>

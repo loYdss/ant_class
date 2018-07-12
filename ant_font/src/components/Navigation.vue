@@ -4,7 +4,6 @@
         :default-active="activeIndex" 
         class="el-menu-demo"
         mode="horizontal"
-        @select="handleSelect"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
@@ -13,8 +12,9 @@
             <el-menu-item index="2">单词</el-menu-item>
             <el-menu-item index="3">听力</el-menu-item>
             <el-menu-item index="4">测试</el-menu-item>
-            <el-menu-item index="5">登录</el-menu-item>
-            <el-menu-item index="6">注册</el-menu-item>
+            <el-menu-item index="5"><router-link to='/login'>登录</router-link></el-menu-item>
+            <el-menu-item index="6"><router-link to='/register'>注册</router-link></el-menu-item>
+             <el-menu-item index="6"><router-link to='/register'>注册</router-link></el-menu-item>
         </el-menu>
     </div>  
 </template>
@@ -24,11 +24,6 @@ export default {
     return {
       activeIndex: "1"
     };
-  },
-  methods: {
-    handleSelect(key, keyPath) {
-      console.log(key, keyPath);
-    }
   }
 }
 </script>
@@ -47,11 +42,10 @@ export default {
 .main_nav li {
   display: inline-block;
   text-align: center;
-  margin: 0rem 0rem 0rem 0rem;
-  padding: 0rem 1rem 0rem 1rem;
+  padding: 0rem .5rem 0rem .5rem;
 }
 .main_nav img {
-  width: 6.25rem;
+  width: 5rem;
   margin-bottom: .5rem;
   margin-right: .2rem;
 }
