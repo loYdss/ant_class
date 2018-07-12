@@ -9,12 +9,9 @@
         active-text-color="#ffd04b">
         <el-menu-item index="0"><router-link to='/'><img src="../assets/antLogo.png"></router-link></el-menu-item>
             <el-menu-item index="1"><router-link to='/'>首页</router-link></el-menu-item>
-            <el-menu-item index="2">单词</el-menu-item>
-            <el-menu-item index="3">听力</el-menu-item>
-            <el-menu-item index="4">测试</el-menu-item>
-            <el-menu-item index="5"><router-link to='/login'>登录</router-link></el-menu-item>
-            <el-menu-item index="6"><router-link to='/register'>注册</router-link></el-menu-item>
-             <el-menu-item index="6"><router-link to='/register'>注册</router-link></el-menu-item>
+             <el-menu-item index="2"><router-link to='/login'>登录</router-link></el-menu-item>
+            <el-menu-item index="3"><router-link to='/register'>注册</router-link></el-menu-item>
+            
         </el-menu>
     </div>  
 </template>
@@ -41,8 +38,11 @@ export default {
 }
 .main_nav li {
   display: inline-block;
-  text-align: center;
   padding: 0rem .5rem 0rem .5rem;
+}
+.main_nav li:nth-child(3),.main_nav li:nth-child(4){
+  float: right;
+  padding: 0rem 1rem 0rem 1rem;
 }
 .main_nav img {
   width: 5rem;
