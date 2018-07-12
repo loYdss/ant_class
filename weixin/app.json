@@ -1,0 +1,45 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/lista/lista",
+    "pages/listb/listb",
+    "pages/view0/view0",
+    "pages/view/view",
+    "pages/view2/view2",
+    "pages/logs/logs"
+  ],
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#d81e06",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "电影",
+        "iconPath": "image/电影.png",
+        "selectedIconPath": "image/电影2.png"
+      },
+      {
+        "pagePath": "pages/lista/lista",
+        "text": "图书",
+        "iconPath": "image/图书.png",
+        "selectedIconPath": "image/图书2.png"
+      },
+      {
+        "pagePath": "pages/listb/listb",
+        "text": "音乐",
+        "iconPath": "image/音乐.png",
+        "selectedIconPath": "image/音乐2.png"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "电影",
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "dark"
+  }
+  
+  
+}
