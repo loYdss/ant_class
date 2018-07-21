@@ -1,12 +1,11 @@
 <template>
     <el-container>
-        <el-header><Nav></Nav></el-header>
-        <el-main>
-           <div class='main_contain'>
+    <el-header><Nav></Nav></el-header>
+    <el-main> <div class='main_contain'>
                <div class='contain_left'>
                 <img src="../assets/login_one.png" class='login_img'>
                </div>
-               <div class='contain_right' id='login'>
+               <div class='contain_right' id='register'>
                     <h3>欢迎来到**</h3>
                     <div class='name'>
                        <el-input v-model="name" placeholder="用户名/邮箱/手机号" prefix-icon="el-icon-ant-yonghutouxiang" id="user">
@@ -16,9 +15,7 @@
                         <el-input v-model="password" placeholder="用户密码" type="password" prefix-icon="el-icon-ant-07" id="password"></el-input>
                         <i class="i_password"></i>
                     </div>
-                    <router-link to='/' class="register a">还没账号?<span class="spa">去注册</span></router-link>
-                    <router-link to='/' class="forget a">忘记密码?</router-link>
-                     <div class="ident_code">
+                    <div class="ident_code">
                         <div class="code">
                           <input type="text" placeholder="请输入验证码" class="input_code" v-model="ident_code">
                           <input type="button" @click="create_code" class="check_code" v-model="check_code">
@@ -28,19 +25,20 @@
                         <p class="alert_p" id="warn">验证码错误</p>
                     </div>
                     <div class='submit'>
-                        <el-button type="success" round id="login_button" :disabled="disabled">登录</el-button>
+                        <el-button type="success" round id="register_button" :disabled="disabled">注册</el-button>
                     </div>
                </div>
                <div class="clearfix">
                </div>
-           </div>
-        </el-main>
+           </div></el-main>
     </el-container>
 </template>
 <script>
 import Nav from "./Navigation";
-import "../assets/icon/iconfont.css";
 export default {
+   components: {
+    Nav
+   },
   data() {
     return {
       name: "",
@@ -53,8 +51,8 @@ export default {
   components: {
     Nav
   },
-  methods:{
-      create_code(){
+  methods: {
+    create_code(){
       this.code = '';
       this.ident_code = '';
       this.check_code = '';
@@ -65,7 +63,7 @@ export default {
         this.code += random[index];
       }
         this.check_code = this.code;
-      }
+    },
   },
   computed: {
     address() {
@@ -82,12 +80,11 @@ export default {
             if(val.name==''||val.password==''){
                 this.disabled = true;
             }else{
-            this.disabled = false; 
-        }     
-    },
-         deep:true
+                this.disabled = false; 
+        }
+    },deep: true  
   },
-  ident_code:{
+    ident_code:{
         handler: function(val){
           let check = this.check_code;
           if(val == check){
@@ -99,11 +96,10 @@ export default {
       deep:true
   },
   mounted() {
-    this.init_wid();
-    let login = document.getElementById('login_button');   
+    this.init_reg_wid();
     window.addEventListener("resize", () => {
     let width = document.documentElement.clientWidth;
-    this.juj_wid(width);
+    this.juj_reg_wid(width);
     });
   },
   created() {
@@ -112,11 +108,11 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-* {
-  margin: 0px;
-  padding: 0px;
-  border-width: 0px;
-  font-family: PingFangSC-Light, Helvetica Neue, Helvetica, Microsoft YaHei,
+* { 
+    margin: 0px;
+    padding: 0px;
+    border-width: 0px;
+    font-family: PingFangSC-Light, Helvetica Neue, Helvetica, Microsoft YaHei,
     \\5fae\8f6f\96c5\9ed1, Arial, SimHei;
 }
 .contain_left {
@@ -159,24 +155,10 @@ export default {
   width: 19.375rem;
 }
 .submit {
-  margin: 2rem 5.6rem;
+  margin: 1rem 5.6rem;
 }
 .submit > button {
   padding: 0.8rem 8.9rem;
-}
-.a {
-    text-decoration: none; 
-}
-.spa,.forget {
-    color: #209e85;
-}
-.forget {
-    float: right;
-    margin-right: 3.3rem;
-}
-.register {
-    color: #999;
-    margin-left: 5.8rem;
 }
 .input_code {
   margin: 0 4rem 0 5.6rem;
@@ -200,5 +182,5 @@ export default {
 .alert_p {
   color: red;
   letter-spacing: .5rem;
-}  
+}       
 </style>
