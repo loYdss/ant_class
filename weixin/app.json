@@ -1,45 +1,50 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/lista/lista",
-    "pages/listb/listb",
-    "pages/view0/view0",
-    "pages/view/view",
-    "pages/view2/view2",
-    "pages/logs/logs"
+    "pages/course/course",
+    "pages/find/find",
+    "pages/home/home",
+    "pages/my/my"
+
   ],
-  "tabBar": {
-    "color": "#8a8a8a",
-    "selectedColor": "#d81e06",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "电影",
-        "iconPath": "image/电影.png",
-        "selectedIconPath": "image/电影2.png"
-      },
-      {
-        "pagePath": "pages/lista/lista",
-        "text": "图书",
-        "iconPath": "image/图书.png",
-        "selectedIconPath": "image/图书2.png"
-      },
-      {
-        "pagePath": "pages/listb/listb",
-        "text": "音乐",
-        "iconPath": "image/音乐.png",
-        "selectedIconPath": "image/音乐2.png"
-      }
-    ]
-  },
+"tabBar":{
+  "color":"#8a8a8a",
+  "selectedColor":"balack",
+  "list":[
+    {
+      "pagePath": "pages/index/index",
+      "text":"首页",
+      "iconPath":"images/首页2.png",
+      "selectedIconPath": "images/首页.png"
+    },
+    {
+      "pagePath": "pages/course/course",
+      "text": "考试",
+      "iconPath": "images/课程.png",
+      "selectedIconPath": "images/课程2.png"
+    },
+    {
+      "pagePath": "pages/find/find",
+      "text": "练习",
+      "iconPath": "images/课时练习.png",
+      "selectedIconPath": "images/练习2.png"
+    },
+    {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "images/我的2.png",
+      "selectedIconPath": "images/我的.png"
+    }
+
+  ]
+},
+
   "window":{
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "电影",
-    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "ant",
+    "navigationBarTextStyle":"white",
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark"
   }
-  
-  
 }
