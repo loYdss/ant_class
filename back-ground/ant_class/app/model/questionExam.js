@@ -1,14 +1,12 @@
-// 谱册内谱曲表
-
+// 用户收藏谱册表
 
 'use strict';
 
 module.exports = app => {
     const {
-
         INTEGER,
     } = app.Sequelize;
-    const scoreVolumeModel = app.model.define('scoreVolume', {
+    const questionExamModel = app.model.define('questionExam', {
         id: {
             type: INTEGER,
             allowNull: false,
@@ -20,15 +18,17 @@ module.exports = app => {
             allowNull: false,
 
         },
-        sid: {
+        uid: {
             type: INTEGER,
             allowNull: false,
         },
 
     }, {
+
         timestamps: false,
-        freezeTableName: true, // 默认表名会被加s,此选项强制表名跟model一致
+        tableName: 'questionExam', // 设置表名
     });
 
-    return scoreVolumeModel;
+
+    return questionExamModel;
 };

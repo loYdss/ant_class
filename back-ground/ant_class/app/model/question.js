@@ -12,23 +12,39 @@ module.exports = app => {
         Deferrable
     } = app.Sequelize;
 
-    const CommentModel = app.model.define('Comment', {
+    const QuestionModel = app.model.define('Question', {
         id: {
             type: INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        volume_id: {
-            type: INTEGER,
-            allowNull: false,
+        title: {
+            type: STRING(200),
+            allowNull: true,
         },
-        uid: {
-            type: INTEGER,
+        answer: {
+            type: STRING(10),
             allowNull: false,
+            defaultValue: 'A',
         },
-        text: {
-            type: STRING(300),
+        a: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        b: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        c: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        d: {
+            type: STRING(100),
             allowNull: false,
             defaultValue: 'undefined',
         },
@@ -50,8 +66,8 @@ module.exports = app => {
         createAt: 'created_at',
         updateAt: 'updated_at',
 
-        tableName: 'Comment', // 设置表名
+        tableName: 'Question', // 设置表名
     });
 
-    return CommentModel;
+    return QuestionModel;
 };

@@ -11,27 +11,44 @@ module.exports = app => {
         DATE
     } = app.Sequelize;
 
-    const SubCommentModel = app.model.define('SubComment', {
+    const HearModel = app.model.define('Hear', {
         id: {
             type: INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        comment_id: {
-            type: INTEGER,
+        url: {
+            type: STRING(200),
             allowNull: false,
+            defaultValue: 'undefined',
         },
-        targetid: {
-            type: INTEGER,
+        title: {
+            type: STRING(200),
             allowNull: true,
         },
-        uid: {
-            type: INTEGER,
+        answer: {
+            type: STRING(10),
             allowNull: false,
+            defaultValue: 'A',
         },
-        text: {
-            type: STRING(300),
+        a: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        b: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        c: {
+            type: STRING(100),
+            allowNull: false,
+            defaultValue: 'undefined',
+        },
+        d: {
+            type: STRING(100),
             allowNull: false,
             defaultValue: 'undefined',
         },
@@ -53,8 +70,8 @@ module.exports = app => {
         createAt: 'created_at',
         updateAt: 'updated_at',
 
-        tableName: 'subComment', // 设置表名
+        tableName: 'Hear', // 设置表名
     });
 
-    return SubCommentModel;
+    return HearModel;
 };

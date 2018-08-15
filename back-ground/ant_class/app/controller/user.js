@@ -11,17 +11,6 @@ class UserController extends Controller {
         this.userService = ctx.service.userService;
         // this.ctx.session.uid = 123; // 测试用
     }
-    async getMyInfo() {
-        const uid = this.ctx.user.id;
-        uid || this.ctx.helper.createRes(403, 'User not login QAQ');
-        const response = await this.userService.getInfo(uid);
-        if (response) {
-            this.ctx.body = response;
-        } else {
-            this.ctx.helper.createRes(404, 'User is not found QAQ');
-        }
-    }
-
     async getInfo() {
         const {
             uid
@@ -31,10 +20,8 @@ class UserController extends Controller {
             this.ctx.body = response;
         } else {
             this.ctx.helper.createRes(404, 'User is not found QAQ');
-
         }
     }
-
     async getUserCollection() {
         const {
             uid
@@ -49,43 +36,30 @@ class UserController extends Controller {
         this.ctx.body = response;
     }
 
-    async getMyCollection() {
-        // 获取session里的uid
-
-        const uid = this.ctx.user.id;
-        if (uid) {
-            this.ctx.helper.createRes(404, 'User not find 凸(⊙▂⊙✖ )');
-        }
-        const {
-            offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false,
-        } = this.ctx.query;
-        const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
-        this.ctx.body = response;
-    }
     async logout() {
         this.ctx.logout();
         this.ctx.body = 'success';
     }
 
-    async addCollectionVolume() {
+    async addCollectionExam() {
         const {
-            vid,
+            eid,
         } = this.ctx.request.body;
         const uid = this.ctx.user.id;
-        const response = await this.userService.addCollectionVolume(uid, vid);
+        const response = await this.userService.addCollectionExam(uid, vid);
         if (!response[response.length - 1]) { // check is new record
-            this.ctx.helper.createRes(412, ' volume has been collected Orz');
+            this.ctx.helper.createRes(412, ' Exam has been collected Orz');
         } else {
             this.ctx.helper.createRes(200, 'collection success QwQ');
         }
     }
 
-    async deleteCollectionVolume() {
+    async deleteCollectionExam() {
         const {
-            vid
+            eid
         } = this.ctx.params;
         const uid = this.ctx.user.id;
-        const response = await this.userService.deleteCollectionVolume(uid, vid);
+        const response = await this.userService.deleteCollectionExam(uid, vid);
         if (response) {
             this.ctx.helper.createRes(200, 'Delete success QwQ');
 
@@ -95,6 +69,37 @@ class UserController extends Controller {
         }
         this.ctx.body = response;
     }
+
+    async addUserResults() {
+        const {
+            Results
+        } = this.ctx.request.body;
+        const uid = this.ctx.user.id;
+        const response = await this.userService.addUserResults(uid, Results);
+        if (!response[response.length - 1]) { // check is new record
+            this.ctx.helper.createRes(412, ' Exam has been collected Orz');
+        } else {
+            this.ctx.helper.createRes(200, 'collection success QwQ');
+        }
+    }
+
+    async deleteUserResults() {
+        const {
+            Results
+        } = this.ctx.params;
+        const uid = this.ctx.user.id;
+        const response = await this.userService.deleteUserResults(uid, Results);
+        if (response) {
+            this.ctx.helper.createRes(200, 'Delete success QwQ');
+
+        } else {
+            this.ctx.helper.createRes(409, 'Delete err Orz  ');
+
+        }
+        this.ctx.body = response;
+    }
+
+
 
 }
 
