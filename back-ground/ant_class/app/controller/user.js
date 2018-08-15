@@ -13,7 +13,6 @@ class UserController extends Controller {
     }
     async getMyInfo() {
         const uid = this.ctx.user.id;
-
         uid || this.ctx.helper.createRes(403, 'User not login QAQ');
         const response = await this.userService.getInfo(uid);
         if (response) {
@@ -24,7 +23,9 @@ class UserController extends Controller {
     }
 
     async getInfo() {
-        const { uid } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
+        const {
+            uid
+        } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
         const response = await this.userService.getInfo(uid);
         if (response) {
             this.ctx.body = response;
@@ -35,8 +36,12 @@ class UserController extends Controller {
     }
 
     async getUserCollection() {
-        const { uid } = this.ctx.params;
-        const { offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false } = this.ctx.query;
+        const {
+            uid
+        } = this.ctx.params;
+        const {
+            offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false
+        } = this.ctx.query;
         if (this.ctx.user.id) {
             this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
         }
@@ -76,7 +81,9 @@ class UserController extends Controller {
     }
 
     async deleteCollectionVolume() {
-        const { vid } = this.ctx.params;
+        const {
+            vid
+        } = this.ctx.params;
         const uid = this.ctx.user.id;
         const response = await this.userService.deleteCollectionVolume(uid, vid);
         if (response) {

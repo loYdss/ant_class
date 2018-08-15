@@ -10,16 +10,12 @@ module.exports = app => {
         DATE,
     } = app.Sequelize;
 
-    const VolumeModel = app.model.define('Volume', {
+    const ExamModel = app.model.define('Exam', {
         id: {
             type: INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-        },
-        photo: {
-            type: STRING(200),
-            allowNull: true,
         },
         title: {
             type: STRING(50),
@@ -53,8 +49,8 @@ module.exports = app => {
         createAt: 'created_at',
         updateAt: 'updated_at',
         timestamps: true, // 时间戳
-        tableName: 'Volume', // 设置表名
+        tableName: 'Exam', // 设置表名
     });
 
-    return VolumeModel;
+    return ExamModel;
 };

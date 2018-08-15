@@ -36,6 +36,11 @@ module.exports = app => {
             allowNull: false,
             defaultValue: 1, //1登录 ,0未登录,2管理员
         },
+        results: {
+            type: INTEGER,
+            allowNull: true,
+            defaultValue: 1, //1登录 ,0未登录,2管理员
+        },
         created_at: {
             type: DATE,
             allowNull: true,
