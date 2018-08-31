@@ -21,44 +21,44 @@ class UserService extends Service {
         // console.log(user);
         return user;
     }
-    async getUserCollection(uid, offset, pagesize, owned) {
-        // this.Volume.belongsTo(this.CollectionVolume, { foreignKey: 'vid', sourceKey: 'id' });
-        const tablename = !owned ? 'collectionVolume' : 'ownVolume';
-        const data = await this.Volume.findAll({
-            // attributes: ['vid', 'uid'],
-            where: {
-                id: {
-                    $in: this.app.Sequelize.literal(
-                        `(SELECT vid FROM "${tablename}" WHERE uid = ${uid})`
-                    ),
-                },
-            },
-            limit: pagesize,
-            offset,
-        });
-        // console.log(data)
-        return data;
-    }
-    async addCollectionVolume(uid, vid) {
-        const data = await this.CollectionVolume.findOrCreate({
-            where: {
-                uid,
-                vid,
-            },
-        });
-        return data;
-    }
-    async deleteCollectionVolume(uid, vid) {
-        // const Op = this.app.Sequelize.Op
-        const data = await this.CollectionVolume.destroy({
+    // async getUserCollection(uid, offset, pagesize, owned) {
+    //     // this.Volume.belongsTo(this.CollectionVolume, { foreignKey: 'vid', sourceKey: 'id' });
+    //     const tablename = !owned ? 'collectionVolume' : 'ownVolume';
+    //     const data = await this.Volume.findAll({
+    //         // attributes: ['vid', 'uid'],
+    //         where: {
+    //             id: {
+    //                 $in: this.app.Sequelize.literal(
+    //                     `(SELECT vid FROM "${tablename}" WHERE uid = ${uid})`
+    //                 ),
+    //             },
+    //         },
+    //         limit: pagesize,
+    //         offset,
+    //     });
+    //     // console.log(data)
+    //     return data;
+    // }
+    async addUserResults(uid, Results) {
+        const data = await this.User.updte({
+            results: Results,
             where: {
                 uid,
-                vid,
             },
         });
-        // console.log(data);
         return data;
     }
+    // async deleteCollectionVolume(uid, vid) {
+    //     // const Op = this.app.Sequelize.Op
+    //     const data = await this.CollectionVolume.destroy({
+    //         where: {
+    //             uid,
+    //             vid,
+    //         },
+    //     });
+    //     // console.log(data);
+    //     return data;
+    // }
 
 
     async register(user) {

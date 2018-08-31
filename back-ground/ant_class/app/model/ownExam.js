@@ -1,34 +1,29 @@
-// 谱册内谱曲表
-
-
+//  用户创建谱册表
 'use strict';
 
 module.exports = app => {
     const {
-
         INTEGER,
     } = app.Sequelize;
-    const hearExamModel = app.model.define('hearExam', {
+    const ownExamModel = app.model.define('ownExam', {
         id: {
             type: INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
         },
-        hid: {
-            type: INTEGER,
-            allowNull: false,
-
-        },
         eid: {
             type: INTEGER,
             allowNull: false,
         },
-
+        uid: {
+            type: INTEGER,
+            allowNull: false,
+        },
     }, {
         timestamps: false,
-        freezeTableName: true, // 默认表名会被加s,此选项强制表名跟model一致
-    });
+        tableName: 'ownExam', // 设置表名
 
-    return hearExamModel;
+    });
+    return ownExamModel;
 };

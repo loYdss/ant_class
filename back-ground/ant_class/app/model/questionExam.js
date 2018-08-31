@@ -13,12 +13,12 @@ module.exports = app => {
             primaryKey: true,
             autoIncrement: true,
         },
-        vid: {
+        qid: {
             type: INTEGER,
             allowNull: false,
 
         },
-        uid: {
+        eid: {
             type: INTEGER,
             allowNull: false,
         },
