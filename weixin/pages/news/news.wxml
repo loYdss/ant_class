@@ -1,0 +1,100 @@
+<view class="navbar"> 
+ <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text> 
+</view> 
+  
+<!--听力-->
+<view hidden="{{currentTab!==0}}"> 
+ <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
+  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
+    <view class="list-view-image">
+      <block wx:if="{{groups.hidden}}">
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+      <block wx:else>
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+    </view>
+    <view class="list-view-text">
+      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
+    </view>
+    <view class="list-view-count">
+      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
+    </view>
+  </view>
+  <view class="list-view-friends" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
+    <block wx:for="{{friends}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="friends">
+      <block wx:if="{{friends.group==groups.id}}">
+        <view class=" list-view-friend " id="{{groups.id}}{{friends.id}} ">
+          <image class="list-friend-image " src="{{friends.photo}} "></image>
+          <text class="list-friend-text ">{{friends.name}}</text>
+        </view>
+      </block>
+    </block>
+  </view>
+</block>
+ 
+</view>
+  
+<!--选择-->
+<view hidden="{{currentTab!==1}}"> 
+ <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
+  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
+    <view class="list-view-image">
+      <block wx:if="{{groups.hidden}}">
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+      <block wx:else>
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+    </view>
+    <view class="list-view-text">
+      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
+    </view>
+    <view class="list-view-count">
+      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
+    </view>
+  </view>
+  <view class="list-view-choose" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
+    <block wx:for="{{choose}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="choose">
+      <block wx:if="{{choose.group==groups.id}}">
+        <view class=" list-view-choose " id="{{groups.id}}{{choose.id}} ">
+          <image class="list-choose-image " src="{{choose.photo}} "></image>
+          <text class="list-choose-text ">{{choose.name}}</text>
+        </view>
+      </block>
+    </block>
+  </view>
+</block> 
+</view> 
+  
+<!--我-->
+<view hidden="{{currentTab!==2}}"> 
+ <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
+  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
+    <view class="list-view-image">
+      <block wx:if="{{groups.hidden}}">
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+      <block wx:else>
+        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
+      </block>
+    </view>
+    <view class="list-view-text">
+      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
+    </view>
+    <view class="list-view-count">
+      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
+    </view>
+  </view>
+  <view class="list-view-friends" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
+    <block wx:for="{{friends}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="friends">
+      <block wx:if="{{friends.group==groups.id}}">
+        <view class=" list-view-friend " id="{{groups.id}}{{friends.id}} ">
+          <image class="list-friend-image " src="{{friends.photo}} "></image>
+          <text class="list-friend-text ">{{friends.name}}</text>
+        </view>
+      </block>
+    </block>
+  </view>
+</block>
+</view>

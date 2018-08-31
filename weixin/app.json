@@ -1,50 +1,44 @@
 {
-  "pages":[
-    "pages/index/index",
-    "pages/course/course",
-    "pages/find/find",
-    "pages/home/home",
-    "pages/my/my"
-
-  ],
-"tabBar":{
-  "color":"#8a8a8a",
-  "selectedColor":"balack",
-  "list":[
-    {
-      "pagePath": "pages/index/index",
-      "text":"首页",
-      "iconPath":"images/首页2.png",
-      "selectedIconPath": "images/首页.png"
+    "pages": [
+        "pages/study/study",
+        "pages/news/news",
+        "pages/find/find",
+        "pages/my/my",
+        "pages/words/words",
+        
+        "pages/logs/logs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "rgb(31, 194, 255)",
+        "navigationBarTitleText": "乐词",
+        "navigationBarTextStyle": "white"
     },
-    {
-      "pagePath": "pages/course/course",
-      "text": "考试",
-      "iconPath": "images/课程.png",
-      "selectedIconPath": "images/课程2.png"
-    },
-    {
-      "pagePath": "pages/find/find",
-      "text": "练习",
-      "iconPath": "images/课时练习.png",
-      "selectedIconPath": "images/练习2.png"
-    },
-    {
-      "pagePath": "pages/my/my",
-      "text": "我的",
-      "iconPath": "images/我的2.png",
-      "selectedIconPath": "images/我的.png"
+    "tabBar": {
+        "color": "#a9b7b7",
+        "selectedColor": "rgb(45, 144, 236)",
+        "backgroundColor": "#fff",
+        "borderStyle": "white",
+        "list": [{
+            "pagePath": "pages/study/study",
+            "text": "学词",
+            "iconPath": "images/home.png",
+            "selectedIconPath": "images/home_click.png"
+        }, {
+            "pagePath": "pages/news/news",
+            "text": "咨询",
+            "iconPath": "images/tab_happy_learn_day.png",
+            "selectedIconPath": "images/tab_happy_learn_day_press.png"
+        }, {
+            "pagePath": "pages/find/find",
+            "iconPath": "images/find_icon.png",
+            "selectedIconPath": "images/find_icon_p.png",
+            "text": "发现"
+        }, {
+            "pagePath": "pages/my/my",
+            "iconPath": "images/me_icon_p.png",
+            "selectedIconPath": "images/me_icon.png",
+            "text": "我"
+        }]
     }
-
-  ]
-},
-
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#000",
-    "navigationBarTitleText": "ant",
-    "navigationBarTextStyle":"white",
-    "enablePullDownRefresh": true,
-    "backgroundTextStyle": "dark"
-  }
 }
