@@ -1,66 +1,58 @@
-// pages/my/my.js
+//index.js
+//获取应用实例
+var app = getApp()
 Page({
+    data: {
+        modalHidden: true,
+        nickName: "",
+        avatarUrl: "",
+        // userInfo: {
+        //     nickName:"",
+        //     avatarUrl:""
+        // },
+        inputname: ""
+    },
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
+    onLoad: function() {
+        console.log('onLoad')
+        var that = this
+        app.getUserInfo(function(userInfo) {
+                that.setData({
+                    nickName: userInfo.nickName,
+                    avatarUrl: userInfo.avatarUrl
+                })
+        })
+    },
+    login: function() {
+        this.setData({
+            modalHidden: false
+        })
+    },
+    saveInput: function(e) {
+        this.setData({
+            inputname: e.detail.value
+        });
+    },
+    actionConfirm: function(e) {
+        var that = this
+        wx.setStorageSync('username', this.data.username);
+        wx.setStorageSync('password', this.data.password);
+        this.setData({
+            modalHidden: true,
+            nickName: that.data.inputname
+        })
+    },
+    actionCancel: function() {
+        this.setData({
+            modalHidden: true
+        })
+    },
+    switchChange: function() {
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
+    }
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
