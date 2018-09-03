@@ -33,6 +33,5 @@ module.exports = app => {
         tableName: 'Authorization', // 设置表名
     });
 
-
     return authorizationModel;
 };

@@ -12,29 +12,29 @@ class UserController extends Controller {
         // this.ctx.session.uid = 123; // 测试用
     }
     async getInfo() {
-        const {
-            uid
-        } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
-        const response = await this.userService.getInfo(uid);
-        if (response) {
-            this.ctx.body = response;
-        } else {
-            this.ctx.helper.createRes(404, 'User is not found QAQ');
+            const {
+                uid
+            } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
+            const response = await this.userService.getInfo(uid);
+            if (response) {
+                this.ctx.body = response;
+            } else {
+                this.ctx.helper.createRes(404, 'User is not found QAQ');
+            }
         }
-    }
-    // async getUserCollection() {
-    //     const {
-    //         uid
-    //     } = this.ctx.params;
-    //     const {
-    //         offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false
-    //     } = this.ctx.query;
-    //     // if (this.ctx.user.id) {
-    //     //     this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
-    //     // }
-    //     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
-    //     this.ctx.body = response;
-    // }
+        // async getUserCollection() {
+        //     const {
+        //         uid
+        //     } = this.ctx.params;
+        //     const {
+        //         offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, owned = false
+        //     } = this.ctx.query;
+        //     // if (this.ctx.user.id) {
+        //     //     this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
+        //     // }
+        //     const response = await this.userService.getUserCollection(uid, offset, pagesize, owned);
+        //     this.ctx.body = response;
+        // }
 
     async logout() {
         this.ctx.logout();
@@ -74,7 +74,9 @@ class UserController extends Controller {
         const {
             Results
         } = this.ctx.request.body;
-        const uid = this.ctx.user.id;
+        const {
+            uid
+        } = this.ctx.params;
         const response = await this.userService.addUserResults(uid, Results);
         if (!response[response.length - 1]) { // check is new record
             this.ctx.helper.createRes(412, ' Exam has been collected Orz');

@@ -1,6 +1,4 @@
 'use strict';
-
-
 // 注意创建以及卸载顺序,先按照被依赖的再安装依赖别人的,先卸载依赖别人的,再卸载被依赖的
 module.exports = {
     async up(queryInterface, Sequelize) {
@@ -12,24 +10,41 @@ module.exports = {
             DATE,
 
         } = Sequelize;
-        await queryInterface.createTable('Score', {
+        await queryInterface.createTable('Exam', {
             id: {
                 type: INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            name: {
-                type: STRING,
+            title: {
+                type: STRING(50),
                 allowNull: false,
-
+                defaultValue: 'undefined',
             },
-            sid: {
+            describe: {
+                type: STRING(300),
+                allowNull: true,
+                defaultValue: 'undefined',
+            },
+            status: { // -1已删除 0不可编辑 1可编辑 2回收站
                 type: INTEGER,
                 allowNull: false,
+                defaultValue: 1,
             },
-            created_at: DATE,
-            updated_at: DATE,
+            visits: {
+                type: INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            created_at: {
+                type: DATE,
+                allowNull: true,
+            },
+            updated_at: {
+                type: DATE,
+                allowNull: true,
+            },
 
         });
 
@@ -59,63 +74,99 @@ module.exports = {
                 allowNull: false,
                 defaultValue: 1,
             },
+            results: {
+                type: INTEGER,
+                allowNull: true,
+                defaultValue: 1, //1登录 ,0未登录,2管理员
+            },
             created_at: DATE,
             updated_at: DATE,
         });
 
-        await queryInterface.createTable('Comment', {
+        await queryInterface.createTable('Hear', {
             id: {
                 type: INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            volume_id: {
-                type: INTEGER,
-                allowNull: false,
-            },
-            uid: {
-                type: INTEGER,
-                allowNull: false,
-            },
-            text: {
-                type: STRING(300),
+            url: {
+                type: STRING(200),
                 allowNull: false,
                 defaultValue: 'undefined',
             },
-            status: { // -1已删除 0不可编辑 1可编辑 2回收站
-                type: INTEGER,
-                allowNull: false,
-                defaultValue: 1,
-            },
-            created_at: DATE,
-            updated_at: DATE,
-        });
-        await queryInterface.createTable('Volume', {
-            id: {
-                type: INTEGER,
-                allowNull: false,
-                primaryKey: true,
-                autoIncrement: true,
-            },
-            photo: {
+            title: {
                 type: STRING(200),
                 allowNull: true,
             },
+            answer: {
+                type: STRING(10),
+                allowNull: false,
+                defaultValue: 'A',
+            },
+            a: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
+            },
+            b: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
+            },
+            c: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
+            },
+            d: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
+            },
+            status: { // -1已删除 0不可编辑 1可编辑 2回收站
+                type: INTEGER,
+                allowNull: false,
+                defaultValue: 1,
+            },
+            created_at: DATE,
+            updated_at: DATE,
+        });
+        await queryInterface.createTable('Question', {
+            id: {
+                type: INTEGER,
+                allowNull: false,
+                primaryKey: true,
+                autoIncrement: true,
+            },
             title: {
-                type: STRING(50),
-                allowNull: false,
-                defaultValue: 'undefined',
-            },
-            describe: {
-                type: STRING(300),
+                type: STRING(200),
                 allowNull: true,
+            },
+            answer: {
+                type: STRING(10),
+                allowNull: false,
+                defaultValue: 'A',
+            },
+            a: {
+                type: STRING(100),
+                allowNull: false,
                 defaultValue: 'undefined',
             },
-            visits: {
-                type: INTEGER,
+            b: {
+                type: STRING(100),
                 allowNull: false,
-                defaultValue: 0
+                defaultValue: 'undefined',
+            },
+            c: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
+            },
+            d: {
+                type: STRING(100),
+                allowNull: false,
+                defaultValue: 'undefined',
             },
             status: { // -1已删除 0不可编辑 1可编辑 2回收站
                 type: INTEGER,
@@ -125,48 +176,17 @@ module.exports = {
             created_at: DATE,
             updated_at: DATE,
         });
-        await queryInterface.createTable('ownVolume', {
+        await queryInterface.createTable('ownExam', {
             id: {
                 type: INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            vid: { // 数组外键,用于查评论表
-
+            eid: { // 数组外键,用于查评论表
                 type: INTEGER({
                     references: {
-                        model: 'Volume', // 对应外键表
-                        key: 'id', // 对应字段
-                        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-                    },
-                    allowNull: true,
-                }),
-
-            },
-            uid: { // 数组外键,用于查评论表
-                type: INTEGER({
-
-                    references: {
-                        model: 'User', // 对应外键表
-                        key: 'id', // 对应字段
-                        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
-                    },
-                    allowNull: true,
-                }),
-            },
-        });
-        await queryInterface.createTable('collectionVolume', {
-            id: {
-                type: INTEGER,
-                allowNull: false,
-                primaryKey: true,
-                autoIncrement: true,
-            },
-            vid: { // 数组外键,用于查评论表
-                type: INTEGER({
-                    references: {
-                        model: 'Volume', // 对应外键表
+                        model: 'Exam', // 对应外键表
                         key: 'id', // 对应字段
                         deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
                     },
@@ -184,76 +204,67 @@ module.exports = {
                     allowNull: true,
                 }),
             },
-            created_at: DATE,
-            updated_at: DATE,
         });
-        await queryInterface.createTable('scoreVolume', {
+        await queryInterface.createTable('questionExam', {
             id: {
                 type: INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            sid: {
-                type: INTEGER,
-                allowNull: false,
-                primaryKey: true,
-            },
-            vid: { // 数组外键,用于查评论表
+            eid: { // 数组外键,用于查评论表
                 type: INTEGER({
-
                     references: {
-                        model: 'Volume', // 对应外键表
+                        model: 'Exam', // 对应外键表
+                        key: 'id', // 对应字段
+                        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    },
+                    allowNull: true,
+                }),
+
+            },
+            qid: { // 数组外键,用于查评论表
+                type: INTEGER({
+                    references: {
+                        model: 'Question', // 对应外键表
                         key: 'id', // 对应字段
                         deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
                     },
                     allowNull: true,
                 }),
             },
+            created_at: DATE,
+            updated_at: DATE,
         });
-        await queryInterface.createTable('subComment', {
+        await queryInterface.createTable('hearExam', {
             id: {
                 type: INTEGER,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true,
             },
-            comment_id: {
-                type: INTEGER,
-                allowNull: false,
+            eid: { // 数组外键,用于查评论表
+                type: INTEGER({
+                    references: {
+                        model: 'Exam', // 对应外键表
+                        key: 'id', // 对应字段
+                        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    },
+                    allowNull: true,
+                })
             },
-            targetid: {
-                type: INTEGER,
-                allowNull: true,
+            hid: { // 数组外键,用于查评论表
+                type: INTEGER({
+                    references: {
+                        model: 'Hear', // 对应外键表
+                        key: 'id', // 对应字段
+                        deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE,
+                    },
+                    allowNull: true,
+                })
             },
-            uid: {
-                type: INTEGER,
-                allowNull: false,
-            },
-            text: {
-                type: STRING(300),
-                allowNull: false,
-                defaultValue: 'undefined',
-            },
-            status: { // -1已删除 0不可编辑 1可编辑 2回收站
-                type: INTEGER,
-                allowNull: false,
-                defaultValue: 1,
-            },
-            created_at: {
-                type: DATE,
-                allowNull: true,
-            },
-            updated_at: {
-                type: DATE,
-                allowNull: true,
-            },
-
-        }, {
-            createAt: 'created_at',
-            updateAt: 'updated_at',
-
         });
+
         await queryInterface.createTable('Authorization', {
             id: {
                 type: INTEGER,
@@ -296,14 +307,14 @@ module.exports = {
     },
 
     async down(queryInterface) {
-        await queryInterface.dropTable('scoreVolume');
-        await queryInterface.dropTable('collectionVolume');
-        await queryInterface.dropTable('ownVolume');
-        await queryInterface.dropTable('Volume');
-        await queryInterface.dropTable('Comment');
+        await queryInterface.dropTable('hearExam');
+        await queryInterface.dropTable('questionExam');
+        await queryInterface.dropTable('ownExam');
+        await queryInterface.dropTable('Exam');
+        await queryInterface.dropTable('Question');
         await queryInterface.dropTable('User');
-        await queryInterface.dropTable('Score');
-        await queryInterface.dropTable('subComment');
+        await queryInterface.dropTable('Hear');
+
         await queryInterface.dropTable('Authorization')
             /*
                       Add reverting commands here.

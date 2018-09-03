@@ -1,10 +1,10 @@
 'use strict';
-
+const path = require('path')
 module.exports = appInfo => {
     const config = exports = {
         sequelize: {
             dialect: 'postgres',
-            database: 'bipu',
+            database: 'ant',
             host: 'localhost',
             port: '5432',
             username: 'dawn',
@@ -61,7 +61,7 @@ module.exports = appInfo => {
     };
 
     // use for cookie sign key, should change to your own and keep security
-    config.keys = appInfo.name + '_1531354082562_8219';
+    config.keys = appInfo.name + '_1535970930013_5646';
 
     // add your config here
     config.middleware = [];

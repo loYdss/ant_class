@@ -1,5 +1,5 @@
 {
-    "name": "ant_class",
+    "name": "class",
     "version": "1.0.0",
     "description": "",
     "private": true,
@@ -53,6 +53,6 @@
         "type": "git",
         "url": ""
     },
-    "author": "TOKdawn",
+    "author": "",
     "license": "MIT"
 }

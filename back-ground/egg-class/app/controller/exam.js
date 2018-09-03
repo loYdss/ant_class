@@ -4,7 +4,7 @@ const DEFAULTOFFSET = 0;
 const DEFAULTVOLUMEPAGESIZE = 10;
 const DEFAULTSCOREPAGESIZE = 20;
 
-class Exam extends Controller {
+class ExamController extends Controller {
 
     constructor(ctx) {
         super(ctx);
@@ -35,27 +35,26 @@ class Exam extends Controller {
         const {
             title,
             describe,
-            url,
 
         } = this.ctx.request.body;
         const {
-            vid
+            eid
         } = this.ctx.params;
-        const Exam = await this.ExamService.findOwner(vid);
+        const Exam = await this.ExamService.findOwner(eid);
         if (Exam.get(uid) !== this.ctx.user.id) {
             this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
         }
-        const response = await this.ExamService.editExam(vid, title, describe, url);
+        const response = await this.ExamService.editExam(eid, title, describe);
         this.ctx.body = response;
     }
 
     async deleteExam() {
         const {
-            vid
+            eid
         } = this.ctx.params;
         const uid = this.ctx.user.id;
 
-        const response = await this.ExamService.deleteExam(vid, uid);
+        const response = await this.ExamService.deleteExam(eid, uid);
         if (response) {
             this.ctx.helper.createRes(200, 'Delete success QwQ');
 
@@ -68,58 +67,63 @@ class Exam extends Controller {
 
     async getExamInfo() {
         const {
-            vid
+            eid
         } = this.ctx.params;
-        const response = await this.ExamService.getExamInfo(vid);
+        const response = await this.ExamService.getExamInfo(eid);
         this.ctx.body = response;
     }
-
-    async getVolumeScore() {
+    async addExamQuestion() {
         const {
-            vid
+            eid
         } = this.ctx.params;
         const {
-            offset = DEFAULTOFFSET, pagesize = DEFAULTSCOREPAGESIZE
-        } = this.ctx.query;
-
-        const response = await this.VolumeService.getVolumeScore(vid, offset, pagesize);
-        // console.log(response)
-        this.ctx.body = response;
-
-
-
-    }
-
-    async addVolumeScore() {
-        const {
-            sid,
+            qid
         } = this.ctx.request.body;
+        const response = await this.ExamService.addExamQuestion(eid, qid);
+        this.ctx.body = response;
+    }
+    async addExamHear() {
         const {
-            vid,
+            eid
         } = this.ctx.params;
-        const volume = await this.VolumeService.findOwner(vid);
-
-        if (volume.get('uid') !== this.ctx.user.id) {
-            this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
-        }
-        const response = await this.VolumeService.addVolumeScore(vid, sid);
+        const {
+            hid
+        } = this.ctx.request.body;
+        const response = await this.ExamService.addExamHear(eid, hid);
         this.ctx.body = response;
     }
 
-    async deleteVolumeScore() {
+    async deleteExamHear() {
         const {
-            vid,
-            sid
+            eid,
+            hid
         } = this.ctx.params;
-        const volume = await this.VolumeService.findOwner(vid);
-
-        if (volume.get('uid') !== this.ctx.user.id) {
-            this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
-        }
-        const response = await this.VolumeService.deleteVolumeScore(vid, sid);
+        const response = await this.ExamService.deleteExamHear(eid, hid);
         this.ctx.body = response;
     }
-   
+    async deleteExamQuestion() {
+        const {
+            eid,
+            qid
+        } = this.ctx.params;
+        const response = await this.ExamService.deleteExamQuestion(eid, qid);
+        this.ctx.body = response;
+    }
+
+    async getExamHear() {
+        const {
+            eid
+        } = this.ctx.params;
+        const response = await this.ExamService.getExamHear(eid);
+        this.ctx.body = response;
+    }
+    async getExamQuestion() {
+        const {
+            eid
+        } = this.ctx.params;
+        const response = await this.ExamService.getExamQuestion(eid);
+        this.ctx.body = response;
+    }
 }
 
-module.exports = Exam;
+module.exports = ExamController;
