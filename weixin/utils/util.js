@@ -1,21 +1,14 @@
-function formatTime(date) {
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
-
-  var hour = date.getHours()
-  var minute = date.getMinutes()
-  var second = date.getSeconds();
-
-
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+function formatSimpleTime(time) {
+  let date = new Date(time);
+  return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 }
 
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+function formatSimpleTimeFull(time) {
+  let date = new Date(time);
+  return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
 }
 
 module.exports = {
-  formatTime: formatTime
+  formatSimpleTime: formatSimpleTime,
+  formatSimpleTimeFull: formatSimpleTimeFull
 }

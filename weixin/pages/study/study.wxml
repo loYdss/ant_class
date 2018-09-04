@@ -1,22 +1,22 @@
 <view class="scontainer">
-    <modal title="您已学习{{modalday}}天" hidden="{{modalHidden2}}" confirm-text="" cancel-text=""></modal>
+    <modal title="您已学习{{day_num}}天" hidden="{{modalHidden2}}" confirm-text="" cancel-text=""></modal>
     <view class="studytop">
         <view class="words">
             <p></p>
-            <p class="title">IELTS全部词汇</p>
+            <p class="title"></p>
             <i><image src="/images/arrow_right_white.png"></image></i>
         </view>
         <!-- <canvas style="width: 400rpx;height: 400rpx;" canvas-id="dayscanvas"></canvas> -->
         <view class="daysbox">
             <div class="days">
                 <p>已完成</p>
-                <p class="dpeven">709</p>
-                <p>未完成</p>
-                <p class="dpeven">2903</p>
+                <p class="dpeven">{{lest_word}}</p>
+                <p>需完成</p>
+                <p class="dpeven">{{my_word}}</p>
             </div>
         </view>
         <view class="jinxing">
-            <p>已进行<span>{{yijinxing}}</span>天</p>
+            <p>已进行<span>{{day_num}}</span>天</p>
             <p>剩余<span>{{shengyu}}</span>天</p>
         </view>
     </view>
@@ -32,17 +32,22 @@
         </ul>
         <ul class="dai">
             <li>
-                <p><i>28</i>个</p>
-                <p>今日待学单词</p>
+                <p><i>{{today_word}}</i>个</p>
+                <p>今日单词</p>
             </li>
             <li>
-                <p><i>100</i>个</p>
-                <p>今日待复习单词</p>
+                <p><i>{{new_word}}</i>个</p>
+                <p>今日新词</p>
             </li>
         </ul>
-        <ul class="xuefu">
-            <li><p>学习</p></li>
-            <li><p class="fuxi">复习</p></li>
-        </ul>
+
+      <ul class="xuefu"  bindtap="a">
+           
+         <li><p>学习</p></li> 
+         <li><p class="fuxi" bindtap="b">复习</p></li>
+            
+      </ul>
+
+        
     </view>
 </view>

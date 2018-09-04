@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "咨询"
+  "backgroundTextStyle": "light",
+  "backgroundColor": "#8a8a8a",
+  "navigationBarBackgroundColor": "#8a8a8a",
+  "navigationBarTitleText": "查单词",
+  "navigationBarTextStyle": "white"
 }

@@ -1,0 +1,50 @@
+<view class="page">
+
+<view  class="job_day">
+
+  <view class="day_num">{{title}}</view>
+</view>
+ 
+ <view class="num_notice">{{true_num}}</view>
+<view wx:if="{{!(showDaan)}}" class="content">
+   <view class="button-1" bindtap="choice" id="{{da4}}">
+      <text class="word-miss" >{{da4}}</text>
+    </view>
+    <view class="button-2" bindtap="choice" id="{{da3}}" >
+      <text class="word-miss" >{{da3}}</text>
+    </view>
+        <view class="button-3" bindtap="choice" id="{{da2}}" >
+      <text class="word-miss" >{{da2}}</text>
+    </view>
+        <view class="button-4" bindtap="choice" id="{{da1}}" >
+      <text class="word-miss" >{{da1}}</text>
+    </view>
+</view>
+<view wx:if="{{showDaan}}" class="content" >
+       <view class="button-5" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >{{true_word}}</text>
+    </view>
+   <view wx:if="{{daan}}" class="button-6" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >回答正确</text>
+    </view>
+       <view wx:if="{{!(daan)}}" class="button-7" bindtap="choice" id="{{da1}}">
+      <text class="word-miss" >回答错误</text>
+    </view>
+       <view wx:if="{{!(complete)}}" class="button-8" bindtap="next" >
+      <text class="word-miss" >下一个</text>
+    </view>
+
+
+     <view wx:if="{{complete}}" class="have_done">
+    <view class="first_notice">{{true_num}}</view>
+   
+    <view class="start_botton" bindtap="again">
+       <view class="look_me">再来一局</view>
+    </view>
+     
+    
+</view>
+
+
+</view>
+</view>

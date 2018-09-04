@@ -13,7 +13,7 @@ Page({
     // console.log('onLoad')
 
 },
-inleci:function () {
+in:function () {
     wx.navigateTo({
         url: "../study/study"
     })

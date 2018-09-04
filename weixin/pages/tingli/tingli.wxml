@@ -1,0 +1,40 @@
+<!-- 
+    poster:音频封面图片
+    name:歌名
+    author:歌手
+    src：音频地址
+    controls:是否显示默认控件，也就是下面这个东东
+                                              
+    loop:是否循环播放
+    id:标注唯一组件以this.audioCtx = wx.createAudioContext('myAudio')获取控制组件的对象。
+    bindplay:播放时触发该事件
+    bindpause：停止时触发该事件
+    bindtimeupdate:时间改变时触发，该函数携带有参数detail={currentTime, duration}当前时间，持续播放时间
+    bindended:播放结束时触发
+    binderror；播放错误时调用，携带参数detail = {errMsg: MediaError.code}
+
+ -->
+<view class='tcontainer'>
+<audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" controls loop bindplay="funplay" bindpause="funpause" bindtimeupdate="funtimeupdate" bindended="funended" binderror="funerror"></audio>
+
+
+  <view class="studybottom">
+
+    <ul class="xuefu" >
+
+     
+       <li><button bindtap="audioPlay">播放</button></li>
+      
+
+      
+       <li><button bindtap="audioPause">暂停</button></li>
+      
+
+     
+       <li><button bindtap="audioStart">重放</button></li>
+      
+ 
+    </ul>
+  </view>
+
+</view>
