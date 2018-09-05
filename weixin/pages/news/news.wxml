@@ -1,100 +1,19 @@
-<view class="navbar"> 
- <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text> 
-</view> 
-  
-<!--听力-->
-<view hidden="{{currentTab!==0}}"> 
- <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
-  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
-    <view class="list-view-image">
-      <block wx:if="{{groups.hidden}}">
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-      <block wx:else>
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-    </view>
-    <view class="list-view-text">
-      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
-    </view>
-    <view class="list-view-count">
-      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
-    </view>
-  </view>
-  <view class="list-view-friends" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
-    <block wx:for="{{friends}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="friends">
-      <block wx:if="{{friends.group==groups.id}}">
-        <view class=" list-view-friend " id="{{groups.id}}{{friends.id}} ">
-          <image class="list-friend-image " src="{{friends.photo}} "></image>
-          <text class="list-friend-text ">{{friends.name}}</text>
-        </view>
-      </block>
-    </block>
-  </view>
-</block>
- 
+<view class="page">
+   <view class="input_counter">
+      <input class="input" placeholder="请输入您想查询的单词" bindinput="voteTitle">  </input>
+   </view>
+   <view wx:if="{{simple}}" class="simple_look" bindtap="detail"> {{voteTitle}}</view>
+   <view wx:if="{{!(simple)&&(detail)}}" class="simple_look">
+   <image class="read"  src='../../images/yuying.png'  mode="scaleToFill" bindtap='read'></image>
+   
+  <view style="font-size:45rpx;">  {{word}} 【{{pron}}】</view>
+  <view style="height:20px;"></view>
+  <view>{{definition}}</view>
+  <view> {{defen[0].first}}<view style="color:red;display:inline;">　{{defen[1].mid}}　</view> {{defen[0].last}}</view>
+  <view>{{defen[0].translation}}</view>
+  <view style="height:20px;"></view>
+  <view>{{defen[1].first}} <view style="color:red;display:inline;">　{{defen[1].mid}}　</view> {{defen[1].last}}</view>
+  <view>{{defen[1].translation}}</view>
 </view>
-  
-<!--选择-->
-<view hidden="{{currentTab!==1}}"> 
- <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
-  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
-    <view class="list-view-image">
-      <block wx:if="{{groups.hidden}}">
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-      <block wx:else>
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-    </view>
-    <view class="list-view-text">
-      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
-    </view>
-    <view class="list-view-count">
-      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
-    </view>
-  </view>
-  <view class="list-view-choose" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
-    <block wx:for="{{choose}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="choose">
-      <block wx:if="{{choose.group==groups.id}}">
-        <view class=" list-view-choose " id="{{groups.id}}{{choose.id}} ">
-          <image class="list-choose-image " src="{{choose.photo}} "></image>
-          <text class="list-choose-text ">{{choose.name}}</text>
-        </view>
-      </block>
-    </block>
-  </view>
-</block> 
-</view> 
-  
-<!--我-->
-<view hidden="{{currentTab!==2}}"> 
- <block wx:for="{{groups}}" wx:key="id" wx:for-index="idxgrp" wx:for-item="groups">
-  <view class="list-view-groups"   id="{{groups.id}}" bindtap="groupclick">
-    <view class="list-view-image">
-      <block wx:if="{{groups.hidden}}">
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-      <block wx:else>
-        <image class="list-image" id="image{{groups.id}}" src="/../images/首页2.png"></image>
-      </block>
-    </view>
-    <view class="list-view-text">
-      <text class="list-text" id="name{{groups.id}}">{{groups.name}}</text>
-    </view>
-    <view class="list-view-count">
-      <text class="list-text-count" id="count{{groups.id}}">({{groups.count}})</text>
-    </view>
-  </view>
-  <view class="list-view-friends" hidden="{{groups.hidden}}" id="friendlist{{groups.id}}">
-    <block wx:for="{{friends}}" wx:key="id" wx:for-index="idxfrd" wx:for-item="friends">
-      <block wx:if="{{friends.group==groups.id}}">
-        <view class=" list-view-friend " id="{{groups.id}}{{friends.id}} ">
-          <image class="list-friend-image " src="{{friends.photo}} "></image>
-          <text class="list-friend-text ">{{friends.name}}</text>
-        </view>
-      </block>
-    </block>
-  </view>
-</block>
+   
 </view>

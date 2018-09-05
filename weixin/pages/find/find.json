@@ -1,6 +1,6 @@
 {
-  "navigationBarBackgroundColor": "rgb(31, 194, 255)",
-  "navigationBarTitleText": "FIND",
+  "navigationBarBackgroundColor": "#9C978B",
+  "navigationBarTitleText": "发现",
   "navigationBarTextStyle": "white",
   "enablePullDownRefresh": true,
   "backgroundTextStyle":"light"

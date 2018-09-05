@@ -8,7 +8,7 @@
 .searchbox {
     height: 60rpx;
     width: 100%;
-    background: rgb(31, 194, 255);
+    background: #9C978B(31, 194, 255);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +17,7 @@
 .searchbox .search {
     width: 650rpx;
     height: 50rpx;
-    background: #14387c;
+    background: #9C978B;
     border-radius: 40rpx;
     display: flex;
 }

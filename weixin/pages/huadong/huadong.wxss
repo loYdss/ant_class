@@ -1,0 +1,17 @@
+.moveArea {
+  height: 70%;
+  width:100%;
+  background: #FFF;
+  margin: 10px;
+}
+
+.moveView {
+  height: 150rpx;
+  width: 150rpx;
+  line-height: 100rpx;
+  background: #9C978B;
+  border-radius: 50%;
+  text-align: center;
+  margin: 10rpx;
+}
+

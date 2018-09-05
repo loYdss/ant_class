@@ -1,119 +1,65 @@
-page{ 
- display: flex; 
- flex-direction: column; 
- height: 100%; 
- 
-} 
-.navbar{ 
- flex: none; 
- display: flex; 
- background: #9C978B; 
-} 
-.navbar .item{ 
- position: relative; 
- flex: auto; 
- text-align: center; 
- line-height: 80rpx; 
-} 
-.navbar .item.active{ 
- color: #FFCC00; 
-} 
-.navbar .item.active:after{ 
- content: ""; 
- display: block; 
- position: absolute; 
- bottom: 0; 
- left: 0; 
- right: 0; 
- height: 4rpx; 
- background: #FFCC00; 
+/* pages/detail-word/detail-word.wxss */
+@import "../study/study.wxss";
+.page{
+    background-image: url('https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=%E5%8D%95%E8%AF%8D&step_word=&hs=0&pn=0&spn=0&di=183451948130&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=2&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=-1&cs=3237506949%2C505387583&os=59249420%2C1088079848&simid=0%2C0&adpicid=0&lpn=0&ln=1926&fr=&fmq=1536033447980_R&fm=result&ic=0&s=undefined&se=&sme=&tab=0&width=&height=&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160616%2Fb434cc93985140e3a1a1ec93371f6c0a_th.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3Fooo_z%26e3Bf5i7_z%26e3Bv54AzdH3FwAzdH3Fbn0n8da0_8aamb9&gsm=0&rpstart=0&rpnum=0&islist=&querylist=');
+    height: 1200rpx;
+    width: 100%;
+    background-size: cover;
 }
-.list-text {
-  font-size: 16px;
-  margin-left: 5px;
-}
-
-
-.list-view-groups {
+.input_counter{
+  position: fixed;
+  left: 7%;
+  top: 5%;
   display: flex;
-  height: 40px;
-  flex-direction: row;
+  flex-direction: column;
+  border-radius: 50rpx;
+  width:86% ;
+  height: 90rpx;
+  border: 1rpx solid #4a475b;
   align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid lightgray;
+  background-color: white;
+  opacity: 0.78;
 }
-
-
-.list-image {
-  margin-left: 5px;
-  width: 24px;
-  height: 24px;
+.input{
+  width:85% ;
+  height: 78rpx;
+  color: black;
+  margin-top: 5rpx;
 }
-
-
-.list-view-count {
-  width: 10%;
-}
-
-
-.list-view-image {
-  width: 10%;
-}
-
-
-.list-view-text {
-  width: 80%;
-}
-
-
-.list-view-friend {
+.simple_look{
+  position: fixed;
+  left: 10%;
+  top: 15%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid lightgray;
+  flex-direction: column;
+  width:78% ;
+  border: 1rpx solid #4a475b;
+  background-color: white;
+  opacity: 0.78;
+  padding:10px; 
 }
-.list-view-choose {
+.read{
+  position: fixed;
+  right: 10%;
+  top: 17%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid lightgray;
-}
-
-
-.list-friend-image {
-  width: 45px;
-  height: 45px;
-  margin: 3px;
-  margin-left: 10px;
+  flex-direction: column;
+  width:60rpx;
+  height: 60rpx;
   border-radius: 50%;
-}
-.list-choose-image {
-  width: 45px;
-  height: 45px;
-  margin: 3px;
-  margin-left: 10px;
-  border-radius: 50%;
-}
 
-
-.list-friend-text {
-  font-size: 16px;
-  margin-left: 5px;
+  background-color: white;
+  opacity: 0.78;
 }
+.sc{
+  position: fixed;
+  right: 25%;
+  top: 17%;
+  display: flex;
+  flex-direction: column;
+  width:60rpx;
+  height: 60rpx;
 
-.list-choose-text {
-  font-size: 16px;
-  margin-left: 5px;
-}
-
-
-.list-view-friend:hover {
-  border-left: 3px solid lightgreen;
-  border-right: 3px solid lightcoral;
-}
-.list-view-choose:hover {
-  border-left: 3px solid lightgreen;
-  border-right: 3px solid lightcoral;
+  background-color: white;
+  opacity: 0.78;
 }

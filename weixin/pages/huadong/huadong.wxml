@@ -1,0 +1,11 @@
+<view class='title-line'>
+  movable</view>
+
+<movable-area class="moveArea">
+  <movable-view class='moveView' x="{{x}}" y="{{y}}" damping="15" direction="all" inertia='true' bindtap='a'>菜单
+  </movable-view>
+</movable-area>
+
+<button class='button' type='primary' size='mini' bindtap='moveView'>点我随机滚动小方块</button>
+<button class='button' type='primary' size='mini' bindtap='stopMove'>点我停止随机滚动</button>
+

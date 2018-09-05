@@ -9,7 +9,7 @@
             </swiper-item>
             <swiper-item>
                 <image src="/images/first_load_3.png" mode="scaleToFill"></image>
-                <view class="in" bindtap="inleci">welcome</view>
+                <view class="in" bindtap="in">welcome</view>
             </swiper-item>
         </block>
     </swiper>

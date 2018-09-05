@@ -5,31 +5,34 @@
         "pages/find/find",
         "pages/my/my",
         "pages/words/words",
+        "pages/collection/collection",
+        "pages/logs/logs",
+        "pages/tingli/tingli",
+        "pages/huadong/huadong",
+        "pages/detail/detail",
+        "pages/read/read",
+        "pages/test/test",
+        "pages/choice/choice"
+      
         
-        "pages/logs/logs"
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "rgb(31, 194, 255)",
-        "navigationBarTitleText": "乐词",
+        "navigationBarBackgroundColor": "#9C978B",
+        "navigationBarTitleText": "哈哈哈",
         "navigationBarTextStyle": "white"
     },
     "tabBar": {
         "color": "#a9b7b7",
-        "selectedColor": "rgb(45, 144, 236)",
+        "selectedColor": "#FF5000",
         "backgroundColor": "#fff",
         "borderStyle": "white",
         "list": [{
             "pagePath": "pages/study/study",
-            "text": "学词",
+            "text": "打卡",
             "iconPath": "images/home.png",
             "selectedIconPath": "images/home_click.png"
-        }, {
-            "pagePath": "pages/news/news",
-            "text": "咨询",
-            "iconPath": "images/tab_happy_learn_day.png",
-            "selectedIconPath": "images/tab_happy_learn_day_press.png"
-        }, {
+        },  {
             "pagePath": "pages/find/find",
             "iconPath": "images/find_icon.png",
             "selectedIconPath": "images/find_icon_p.png",

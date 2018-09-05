@@ -1,113 +1,130 @@
-var app = getApp()
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    navbar: ['听力', '选择', '阅读'],
-    friends: [{
-      id: 1,
-      name: "18年六级真题",
-      photo: "/../images/听力.png",
-      group: 1
-    }, {
-      id: 2,
-      name: "18年四级真题",
-      photo: "/../images/听力.png",
-      group: 1
-    }, {
-      id: 3,
-      name: "18年雅思真题",
-      photo: "/../images/听力.png",
-      group: 2
-    }, {
-      id: 4,
-      name: "17年雅思真题",
-      photo: "/../images/听力.png",
-      group: 2
-    }, {
-      id: 5,
-      name: "18年托福真题",
-      photo: "/../images/听力.png",
-      group: 3
-    }, {
-      id: 6,
-      name: "17年托福真题",
-      photo: "/../images/听力.png",
-      group: 3
-    }
-    ],
-
-
-    choose: [{
-      id: 1,
-      name: "18年六级真题2",
-      photo: "/../images/听力.png",
-      group: 1
-    }, {
-      id: 2,
-      name: "18年四级真题2",
-      photo: "/../images/听力.png",
-      group: 1
-    }, {
-      id: 3,
-      name: "18年雅思真题2",
-      photo: "/../images/听力.png",
-      group: 2
-    }, {
-      id: 4,
-      name: "17年雅思真题2",
-      photo: "/../images/听力.png",
-      group: 2
-    }, {
-      id: 5,
-      name: "18年托福真题2",
-      photo: "/../images/听力.png",
-      group: 3
-    }, {
-      id: 6,
-      name: "17年托福真题2",
-      photo: "/../images/听力.png",
-      group: 3
-    }
-    ],
-
-    groups: [{
-      id: 1,
-      name: "四六级",
-      hidden: true,
-      count: 2
-    }, {
-      id: 2,
-      name: "雅思",
-      hidden: true,
-      count: 2
-    }, {
-      id: 3,
-      name: "托福",
-      hidden: true,
-      count: 2
-    },
-    ],
-
-    expanded: false,
+    voteTitle: null,
+    simple: false,
+    detail: false
   },
-  groupclick: function (e) {
-    var id = e.currentTarget.id, groups = this.data.groups;
 
-    for (var i = 0, len = groups.length; i < len; ++i) {
-      if (groups[i].id == id) {
-        groups[i].hidden = !groups[i].hidden;
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
 
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (options) {
+
+  },
+  voteTitle: function (e) {
+    this.setData({ simple: true, voteTitle: e.detail.value })
+
+  },
+  detail() {
+
+    var that = this
+    wx.request({
+      url: 'https://api.shanbay.com/bdc/search/?word=' + this.data.voteTitle,
+      data: {},
+      method: 'GET',
+      success: function (res) {
+
+        console.log(res)
+        that.setData({
+          word: res.data.data.content,
+          pron: res.data.data.pronunciation,
+          definition: res.data.data.definition,
+          pron_audio: res.data.data.audio
+
+        })
+        that.get_sams(res.data.data.conent_id)
+      },
+      fail: function () {
+      },
+      complete: function () {
       }
-
-    }
-    this.setData({
-      groups: groups
-
     })
-    currentTab: 0
-  },
-  navbarTap: function (e) {
+
     this.setData({
-      currentTab: e.currentTarget.dataset.idx
+      detail: true,
+      simple: false
+    })
+  },
+  read() {
+    const innerAudioContext = wx.createInnerAudioContext()
+    innerAudioContext.autoplay = true
+    innerAudioContext.src = this.data.pron_audio
+    innerAudioContext.onPlay(() => {
+    })
+    innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  },
+  get_sams(id) {
+    var that = this
+    wx.request({
+      url: 'https://api.shanbay.com/bdc/example/?vocabulary_id=' + id,
+      data: {},
+      method: 'GET',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          defen: [res.data.data[0], res.data.data[4]]
+        })
+      },
+      fail: function () {
+      },
+      complete: function () {
+      }
     })
   }
-}) 
+})
