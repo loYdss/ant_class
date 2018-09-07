@@ -2,7 +2,7 @@
 // app/service/user.js
 const Service = require('egg').Service;
 
-class UserService extends Service {
+class userService extends Service {
     constructor(ctx) {
         super(ctx);
         this.CollectionVolume = this.ctx.model.CollectionVolume;
@@ -86,4 +86,4 @@ class UserService extends Service {
     }
 }
 
-module.exports = UserService;
+module.exports = userService;

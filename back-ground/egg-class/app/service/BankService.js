@@ -9,8 +9,8 @@ class BankService extends Service {
         // this.Exam = this.ctx.model.Exam;
         // this.questionExam = this.ctx.model.questionExam;
         // this.hearExam = this.ctx.moudle.hearExam;
-        this.Hear = this.ctx.moudle.Hear;
-        this.Question = this.ctx.moudle.Question;
+        this.Hear = this.ctx.model.Hear;
+        this.Question = this.ctx.model.Question;
 
     }
     async addQuestion(title, a, b, c, d, answer) {
@@ -25,14 +25,15 @@ class BankService extends Service {
         return data;
     }
 
-    async addHear(title, a, b, c, d, answer) {
+    async addHear(title, a, b, c, d, answer, url) {
         const data = await this.Hear.create({
             title,
             a,
             b,
             c,
             d,
-            answer
+            answer,
+            url
         });
         return data;
     }
@@ -42,7 +43,7 @@ class BankService extends Service {
         return data;
     }
     async getHear() {
-        const data = await this.Question.findAll();
+        const data = await this.Hear.findAll();
         return data;
     }
 

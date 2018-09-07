@@ -14,6 +14,7 @@ module.exports = appInfo => {
             // enable: false
             csrf: {
                 enable: false,
+                ignoreJSON: true
             },
 
         },
@@ -21,8 +22,11 @@ module.exports = appInfo => {
             whitelist: [
                 '.png',
                 '.jpg',
+                '.MP3',
+                '.mp3',
+                '.wav'
             ],
-            fileSize: '3mb',
+            fileSize: '5mb',
         },
         oss: {
             client: {
@@ -41,7 +45,8 @@ module.exports = appInfo => {
             // proxy: false,
         },
         cors: {
-            origin: 'https://github.com/',
+            // origin: 'https://github.com/',
+            origin: 'http://localhost:8080',
             allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
         },
         session: {

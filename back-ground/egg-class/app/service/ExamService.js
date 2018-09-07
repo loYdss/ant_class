@@ -2,16 +2,23 @@
 // app/service/user.js
 const Service = require('egg').Service;
 // const Github = require('../extend/application');
-class ExamService extends Service {
+class examService extends Service {
     constructor(ctx) {
         super(ctx);
         this.User = this.ctx.model.User;
         this.Exam = this.ctx.model.Exam;
-        this.questionExam = this.ctx.model.questionExam;
-        this.hearExam = this.ctx.moudle.hearExam;
-        this.Hear = this.ctx.moudle.Hear;
-        this.Question = this.ctx.moudle.Question;
+        this.questionExam = this.ctx.model.QuestionExam;
+        this.hearExam = this.ctx.model.HearExam;
+        this.Hear = this.ctx.model.Hear;
+        this.Question = this.ctx.model.Question;
+        this.OwnExam = this.ctx.model.OwnExam;
 
+    }
+    async getExamList() {
+        const data = this.Exam.findAll({
+
+        });
+        return data;
     }
     async createExam(title, describe, uid) {
         // console.log(this.app.model.sequelize)
@@ -26,7 +33,6 @@ class ExamService extends Service {
                 uid,
                 eid: data.get('id'),
             });
-
             await t.commit();
             return data;
         } catch (err) {
@@ -46,20 +52,20 @@ class ExamService extends Service {
         });
         return data;
     }
-    async deleteExam(vid, uid) {
+    async deleteExam(eid, uid) {
         const t = await this.ctx.model.transaction();
         try {
             const dele = await this.OwnExam.destroy({
                 where: {
                     uid,
-                    vid,
+                    eid,
                 },
             });
             await this.Exam.update({
                 status: 2,
             }, {
                 where: {
-                    id: vid,
+                    id: eid,
                 },
             });
             await t.commit();
@@ -69,77 +75,76 @@ class ExamService extends Service {
             return err;
         }
     }
-    async getExamInfo(vid) {
-        const Exam = await this.Exam.findOne({
-            where: {
-                id: vid,
-            },
-        });
-        return Exam;
-    }
-    async addExamQuestion(eid, qid) {
-        const data = await this.questionExam.findOrCreate({
-            where: {
-                qid,
-                eid,
-            },
-        });
-        return data;
-    }
-    async deleteExamQuestion(eid, qid) {
-        const data = await this.questionExam.destroy({
-            where: {
-                eid,
-                qid,
-            }
-        });
-        // console.log(data);
-        return data;
-    }
 
-    async addExamHear(eid, hid) {
-        const data = await this.hearExam.findOrCreate({
-            where: {
-                hid,
-                eid,
-            },
-        });
-        return data;
-    }
-    async deleteExamHear(eid, hid) {
-        const data = await this.hearExam.destroy({
-            where: {
-                hid,
-                qid,
-            }
-        });
-        // console.log(data);
-        return data;
-    }
+    // async addExamQuestion(eid, qid) {
+    //     const data = await this.questionExam.findOrCreate({
+    //         where: {
+    //             qid,
+    //             eid,
+    //         },
+    //     });
+    //     return data;
+    // }
+    // async deleteExamQuestion(eid, qid) {
+    //     const data = await this.questionExam.destroy({
+    //         where: {
+    //             eid,
+    //             qid,
+    //         }
+    //     });
+    //     // console.log(data);
+    //     return data;
+    // }
+
+    // async addExamHear(eid, hid) {
+    //     const data = await this.hearExam.findOrCreate({
+    //         where: {
+    //             hid,
+    //             eid,
+    //         },
+    //     });
+    //     return data;
+    // }
+    // async deleteExamHear(eid, hid) {
+    //     const data = await this.hearExam.destroy({
+    //         where: {
+    //             hid,
+    //             eid,
+    //         }
+    //     });
+    //     // console.log(data);
+    //     return data;
+    // }
 
 
     async getExamInfo(eid) {
         const t = await this.ctx.model.transaction();
-
-
         try {
             const Question = await this.questionExam.findAll({
-                // attributes: ['vid', 'uid'],
+
                 where: {
-                    eid,
+                    eid
                 }
             });
+            // console.log(Question)
+
             let tiem;
-            const result = [];
+            const result = {
+                question: [],
+                hear: []
+            };
+
             for (tiem in Question) {
                 // const temp = await this.ctx.helper.getIssue(data[tiem].get('sid'));
                 // result.push(temp); //issues 获取
+                console.log(Question)
                 const score = await this.Question.findOne({
                     where: {
-                        id: data[tiem].get('qid')
+                        id: Question[tiem].get('qid')
                     }
                 });
-                result.push(score);
+                // console.log(score)
+                result.question.push(score);
             }
             const Hear = await this.hearExam.findAll({
                 // attributes: ['vid', 'uid'],
@@ -150,12 +155,12 @@ class ExamService extends Service {
             for (tiem in Hear) {
                 // const temp = await this.ctx.helper.getIssue(data[tiem].get('sid'));
                 // result.push(temp); //issues 获取
-                const score = await this.Question.findOne({
+                const score = await this.Hear.findOne({
                     where: {
-                        id: data[tiem].get('hid')
+                        id: Hear[tiem].get('hid')
                     }
                 });
-                result.push(score);
+                result.hear.push(score);
             }
             await t.commit();
             return result;
@@ -192,6 +197,7 @@ class ExamService extends Service {
         return data;
     }
     async addExamQuestion(eid, qid) {
+
         const data = await this.questionExam.findOrCreate({
             where: {
                 eid,
@@ -229,4 +235,4 @@ class ExamService extends Service {
     }
 }
 
-module.exports = ExamService;
+module.exports = examService;

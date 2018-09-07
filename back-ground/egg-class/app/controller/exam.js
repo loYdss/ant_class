@@ -8,7 +8,7 @@ class ExamController extends Controller {
 
     constructor(ctx) {
         super(ctx);
-        this.ExamService = ctx.service.ExamService;
+        this.examService = ctx.service.examService;
         // this.ctx.session.uid = 123; // 测试用
     }
 
@@ -16,7 +16,7 @@ class ExamController extends Controller {
         const {
             offset = DEFAULTOFFSET, pagesize = DEFAULTVOLUMEPAGESIZE, role = 'normal'
         } = this.ctx.query;
-        const response = await this.ExamService.getExamList(offset, pagesize, role);
+        const response = await this.examService.getExamList();
         this.ctx.body = response;
     }
 
@@ -27,7 +27,7 @@ class ExamController extends Controller {
         } = this.ctx.request.body;
         const uid = this.ctx.user.id;
         // const uid = 123; //测试用
-        const response = await this.ExamService.createExam(title, describe, uid);
+        const response = await this.examService.createExam(title, describe, uid);
         this.ctx.body = response;
     }
 
@@ -35,16 +35,15 @@ class ExamController extends Controller {
         const {
             title,
             describe,
-
         } = this.ctx.request.body;
         const {
             eid
         } = this.ctx.params;
-        const Exam = await this.ExamService.findOwner(eid);
+        const Exam = await this.examService.findOwner(eid);
         if (Exam.get(uid) !== this.ctx.user.id) {
             this.ctx.helper.createRes(403, 'permission denied ಠ益ಠ');
         }
-        const response = await this.ExamService.editExam(eid, title, describe);
+        const response = await this.examService.editExam(eid, title, describe);
         this.ctx.body = response;
     }
 
@@ -53,8 +52,8 @@ class ExamController extends Controller {
             eid
         } = this.ctx.params;
         const uid = this.ctx.user.id;
-
-        const response = await this.ExamService.deleteExam(eid, uid);
+        // const uid = 123; //测试用
+        const response = await this.examService.deleteExam(eid, uid);
         if (response) {
             this.ctx.helper.createRes(200, 'Delete success QwQ');
 
@@ -69,7 +68,7 @@ class ExamController extends Controller {
         const {
             eid
         } = this.ctx.params;
-        const response = await this.ExamService.getExamInfo(eid);
+        const response = await this.examService.getExamInfo(eid);
         this.ctx.body = response;
     }
     async addExamQuestion() {
@@ -79,7 +78,8 @@ class ExamController extends Controller {
         const {
             qid
         } = this.ctx.request.body;
-        const response = await this.ExamService.addExamQuestion(eid, qid);
+        console.log(eid, qid)
+        const response = await this.examService.addExamQuestion(eid, qid);
         this.ctx.body = response;
     }
     async addExamHear() {
@@ -89,7 +89,8 @@ class ExamController extends Controller {
         const {
             hid
         } = this.ctx.request.body;
-        const response = await this.ExamService.addExamHear(eid, hid);
+
+        const response = await this.examService.addExamHear(eid, hid);
         this.ctx.body = response;
     }
 
@@ -98,7 +99,7 @@ class ExamController extends Controller {
             eid,
             hid
         } = this.ctx.params;
-        const response = await this.ExamService.deleteExamHear(eid, hid);
+        const response = await this.examService.deleteExamHear(eid, hid);
         this.ctx.body = response;
     }
     async deleteExamQuestion() {
@@ -106,7 +107,7 @@ class ExamController extends Controller {
             eid,
             qid
         } = this.ctx.params;
-        const response = await this.ExamService.deleteExamQuestion(eid, qid);
+        const response = await this.examService.deleteExamQuestion(eid, qid);
         this.ctx.body = response;
     }
 
@@ -114,14 +115,14 @@ class ExamController extends Controller {
         const {
             eid
         } = this.ctx.params;
-        const response = await this.ExamService.getExamHear(eid);
+        const response = await this.examService.getExamHear(eid);
         this.ctx.body = response;
     }
     async getExamQuestion() {
         const {
             eid
         } = this.ctx.params;
-        const response = await this.ExamService.getExamQuestion(eid);
+        const response = await this.examService.getExamQuestion(eid);
         this.ctx.body = response;
     }
 }

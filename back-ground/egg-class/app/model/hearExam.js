@@ -1,11 +1,7 @@
 // 谱册内谱曲表
-
-
 'use strict';
-
 module.exports = app => {
     const {
-
         INTEGER,
     } = app.Sequelize;
     const hearExamModel = app.model.define('hearExam', {

@@ -91,7 +91,7 @@ module.exports = {
                 autoIncrement: true,
             },
             url: {
-                type: STRING(200),
+                type: STRING(2000),
                 allowNull: false,
                 defaultValue: 'undefined',
             },

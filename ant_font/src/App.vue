@@ -21,7 +21,17 @@ document.documentElement.style.fontSize = (deviceWidth / 80) + 'px'
 
 }
 export default {
-  name:'app'
+  name:'app',
+  created(){
+     {
+      var state = JSON.parse(localStorage.getItem('isLogin'));
+      if(localStorage.getItem('isLogin') === null){
+             localStorage.setItem('isLogin','');
+      }
+      this.$store.state.isLogin.success = state.success;
+      this.$store.state.isLogin.admin = state.admin;
+  }
+  }
 };
 </script>
 

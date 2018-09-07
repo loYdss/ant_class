@@ -12,9 +12,10 @@ class UserController extends Controller {
         // this.ctx.session.uid = 123; // 测试用
     }
     async getInfo() {
-            const {
-                uid
-            } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
+            // const {
+            //     uid
+            // } = this.ctx.params; // 等价于 const uid = this.ctx.params.uid;
+            const uid = this.ctx.user.id;
             const response = await this.userService.getInfo(uid);
             if (response) {
                 this.ctx.body = response;

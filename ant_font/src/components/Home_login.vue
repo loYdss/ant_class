@@ -4,6 +4,7 @@
   <el-main>
       <div class="main_content">
           <div class="span">
+              <router-link to='/testlist'>
               <div class="span3">
                   <p>W</p>
                   <div>
@@ -12,6 +13,7 @@
                   </div>
                   <hr>
               </div>
+              </router-link>
               <div class="span3">
                      <p>W</p>
                   <div>
@@ -139,5 +141,8 @@ hr {
 }
 .auth {
     text-align: right;
+}
+a:visited {
+    color: black;
 }
 </style>

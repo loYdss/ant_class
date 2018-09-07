@@ -28,11 +28,13 @@
                         <p class="alert_p" id="warn">验证码错误</p>
                     </div>
                     <div class='submit'>
-                        <el-button type="success" round id="login_button" :disabled="disabled">登录</el-button>
+                       <el-button type="success" round id="login_button" :disabled="disabled" @click="login(name,password)">登录</el-button>
                     </div>
+                    <img src="../assets/git.jpg" class="git" @click="git()">
                </div>
                <div class="clearfix">
                </div>
+               
            </div>
         </el-main>
     </el-container>
@@ -65,6 +67,24 @@ export default {
         this.code += random[index];
       }
         this.check_code = this.code;
+      },
+      git(){
+          this.$store.dispatch('isLogin',{
+          success:1,
+          admin:1
+        }); 
+        window.location.href = 'http://localhost:7001/passport/github';
+      },
+      login(name,password){
+          if(name == '123' && password == '123'){
+            this.$store.dispatch('isLogin',{
+              success:1
+            });
+            this.$router.push('testlist');
+        }
+        else{
+            alert("password is bad");
+        }
       }
   },
   computed: {
@@ -108,7 +128,7 @@ export default {
   },
   created() {
     this.create_code();
-  }
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -201,4 +221,12 @@ export default {
   color: red;
   letter-spacing: .5rem;
 }  
+.git {
+  width: 2rem;
+  height: 2rem;
+  margin-left: 14rem;
+}
+.git:hover {
+  cursor: pointer;
+}
 </style>

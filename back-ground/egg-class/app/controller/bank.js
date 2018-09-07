@@ -30,6 +30,7 @@ class BankController extends Controller {
             answer,
             url
         } = this.ctx.request.body;
+        console.log(url)
         const response = await this.BankService.addHear(title, a, b, c, d, answer, url);
         this.ctx.body = response;
     }

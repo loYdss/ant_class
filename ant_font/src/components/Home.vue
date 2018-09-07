@@ -3,10 +3,11 @@
   <el-header>
       <el-row>
       <el-col :span="24">
-        <div class="grid-content bg-purple-dark">
+        <div class="grid-content bg-purple-dark" v-if="!isLogin.success">
           <el-button type="text"><router-link to='/login' class='login'>登录</router-link></el-button>
-          <span class="register">|</span>
-          <el-button type="text">注册</el-button>
+        </div>
+        <div class="grid-content bg-purple-dark" v-if="isLogin.success">
+            <router-link to='/login' class='login'>开始学习</router-link>
         </div>
         </el-col>
     </el-row>
@@ -143,7 +144,8 @@ export default {
         { pic: "02", src: require("../assets/Oral.png") },
         { pic: "03", src: require("../assets/Test.png") },
         { pic: "04", src: require("../assets/Word.png") }
-      ]
+      ],
+      isLogin: this.$store.state.isLogin,
     };
   },
   mounted (){
@@ -154,7 +156,6 @@ export default {
         document.getElementById('footer').style.display = 'none';
       } 
    })
-   
   }
 }
 </script>
